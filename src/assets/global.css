@@ -1,0 +1,9 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.green {
+  background-color: rgb(49, 164, 49);
+  font-size: 30px;
+}
