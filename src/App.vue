@@ -7,14 +7,15 @@
     v-if="isPlaying"
   />
   <button class="start" :disabled="isPlaying" @click="start">Start</button>
-  <p v-if="showResult">Reaction Time: {{ score }}ms</p>
+  <Result :reactionTime="score" v-if="showResult" />
 </template>
 
 <script>
 import Box from "./components/Box.vue";
+import Result from "./components/Result.vue";
 export default {
   name: "App",
-  components: { Box },
+  components: { Box, Result },
   data() {
     return {
       isPlaying: false,
