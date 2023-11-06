@@ -67,6 +67,11 @@ h1 {
   text-transform: uppercase;
   transition: all 0.5s;
 }
+
+.start[disabled] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
 .start:hover {
   background-color: green;
   color: #fff;
