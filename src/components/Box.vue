@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showBox" class="box">Click</div>
+  <div v-if="showBox" class="box" @click="stopTimer">Click</div>
 </template>
 
 <script>
@@ -7,17 +7,27 @@ export default {
   props: ["timerDelay"],
   data() {
     return {
-      boxColor: this.color,
       showBox: false,
+      timer: null,
+      reactionTime: 0,
     };
   },
   mounted() {
     setTimeout(() => {
       this.showBox = true;
+      this.startTimer();
     }, this.timerDelay);
   },
-  updated() {
-    console.log("zrobione");
+  methods: {
+    startTimer() {
+      this.timer = setInterval(() => {
+        this.reactionTime += 10;
+      }, 10);
+    },
+    stopTimer() {
+      clearInterval(this.timer);
+      this.$emit("endTimer", this.reactionTime);
+    },
   },
 };
 </script>

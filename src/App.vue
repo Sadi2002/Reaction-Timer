@@ -1,7 +1,13 @@
 <template>
   <h1>Reaction Timer App</h1>
-  <Box :class="boxColor" :timerDelay="delay" v-if="isPlaying" />
+  <Box
+    @endTimer="endGame"
+    :class="boxColor"
+    :timerDelay="delay"
+    v-if="isPlaying"
+  />
   <button class="start" :disabled="isPlaying" @click="start">Start</button>
+  <p v-if="showResult">Reaction Time: {{ score }}ms</p>
 </template>
 
 <script>
@@ -14,11 +20,20 @@ export default {
       isPlaying: false,
       delay: null,
       boxColor: "crimson",
+      score: null,
+      showResult: false,
     };
   },
   methods: {
     start() {
       (this.isPlaying = true), (this.delay = 2000 + Math.random() * 5000);
+
+      this.showResult = false;
+    },
+    endGame(reaction) {
+      this.score = reaction;
+      (this.isPlaying = false), console.log(this.score);
+      this.showResult = true;
     },
   },
 };
